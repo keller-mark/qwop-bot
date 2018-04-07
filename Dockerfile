@@ -15,6 +15,6 @@ RUN apk update && \
 
 RUN apk add curl unzip libexif udev chromium chromium-chromedriver xvfb
 
-CMD cd bot/slime && python -m http.server
+CMD [ "tail", "-f", "/dev/null" ]
 
 
