@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 45 75" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="f1">
+      <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#f1)">
+    <g>
+      <rect x="2" width="1" height="70" style="fill: #fff;"/>
+      <rect x="9" width="1" height="70" style="fill: #fff;"/>
+      <rect x="16" width="1" height="70" style="fill: #fff;"/>
+      <rect x="23" width="1" height="70" style="fill: #fff;"/>
+      <rect x="30" width="1" height="70" style="fill: #fff;"/>
+      <rect x="37" width="1" height="70" style="fill: #fff;"/>
+      <rect y="2" width="40" height="1" style="fill: #fff;"/>
+      <rect y="9" width="40" height="1" style="fill: #fff;"/>
+      <rect y="16" width="40" height="1" style="fill: #fff;"/>
+      <rect y="23" width="40" height="1" style="fill: #fff;"/>
+      <rect y="30" width="40" height="1" style="fill: #fff;"/>
+      <rect y="37" width="40" height="1" style="fill: #fff;"/>
+      <rect y="44" width="40" height="1" style="fill: #fff;"/>
+      <rect y="51" width="40" height="1" style="fill: #fff;"/>
+      <rect y="58" width="40" height="1" style="fill: #fff;"/>
+      <rect y="65" width="40" height="1" style="fill: #fff;"/>
+    </g>
+    <g>
+      <rect width="4" height="8" y="56" style="fill: #fff;"/>
+      <rect width="4" height="6" y="64" style="fill: #cb2228;"/>
+      <rect width="4" height="8" y="40" style="fill: #fff;"/>
+      <rect width="4" height="8" y="48" style="fill: #cb2228;"/>
+      <rect width="4" height="8" y="24" style="fill: #fff;"/>
+      <rect width="4" height="8" y="32" style="fill: #cb2228;"/>
+      <rect width="4" height="8" y="8" style="fill: #fff;"/>
+      <rect width="4" height="8" y="16" style="fill: #cb2228;"/>
+      <rect width="8" height="4" x="8" style="fill: #fff;"/>
+      <rect width="4" height="8" style="fill: #cb2228;"/>
+      <rect width="8" height="4" style="fill: #cb2228;"/>
+      <rect width="8" height="4" x="24" style="fill: #fff;"/>
+      <rect width="8" height="4" x="32" style="fill: #cb2228;"/>
+      <rect width="8" height="4" x="16" style="fill: #cb2228;"/>
+    </g>
+  </g>
+</svg>
