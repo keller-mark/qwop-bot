@@ -12,11 +12,12 @@ RUN apk update && \
 	apk add python py-pip curl unzip libexif udev chromium chromium-chromedriver xvfb && \
 	pip install selenium && \
 	pip install pyvirtualdisplay
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+
 RUN apk add curl unzip libexif udev chromium chromium-chromedriver xvfb
+
+
 COPY . .
 
-#CMD [ "python", "./app.py" ]
+CMD [ "tail", "-f", "/dev/null" ]
 
 

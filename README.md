@@ -5,5 +5,7 @@
 
 ```
 docker build -t "slime-bot" .
-docker run slime-bot
+docker run -d --name slime_bot slime-bot
+docker exec -it slime_bot sh
+# to exit: exit
 ```
