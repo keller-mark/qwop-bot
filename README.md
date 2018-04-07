@@ -1,7 +1,8 @@
 # Slime Soccer Bot
 
 ### Setup
-- python
-- tesseract?
-- openai?
+- docker
 
+```
+docker build -t "slime-bot" .
+```
