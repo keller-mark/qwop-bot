@@ -1,6 +1,7 @@
 import gym
+from env import SlimeEnv
 
-env = gym.make('CartPole-v0')
+env = SlimeEnv()
 env.reset()
 for _ in range(1000):
   env.render()

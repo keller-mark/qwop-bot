@@ -3,16 +3,26 @@ from gym import spaces
 from gym.utils import seeding
 import numpy as np
 
+POSITION = 'position'
+VELOCITY = 'velocity'
+PLAYER = 'player'
+OPPONENT = 'opponent'
+BALL = 'ball'
+
+KEY_W = 'w'
+KEY_A = 'a'
+KEY_S = 's'
+KEY_D = 'd'
+
 
 class SlimeEnv(gym.Env):
     """
-
     Based on https://github.com/openai/gym/blob/master/gym/envs/toy_text/guessing_game.py
 
     The object of the game is to score more goals than your opponent
     within 200 time steps
 
-    The observation is a tuple of: (
+    The observation contains: (
         the player's current position,
         the player's current velocity,
         the opponent's current position,
@@ -46,25 +56,25 @@ class SlimeEnv(gym.Env):
         self.frame_count = 0
 
         self.observation_space = spaces.Dict({
-            "player": spaces.Dict({
-                'position': spaces.Box(low=0, high=100, shape=()),
-                'velocity': spaces.Box(low=-1, high=1, shape=())
+            PLAYER: spaces.Dict({
+                POSITION: spaces.Box(low=0, high=100, shape=()),
+                VELOCITY: spaces.Box(low=-1, high=1, shape=())
             }), 
-            "opponent": spaces.Dict({
-                'position': spaces.Box(low=0, high=100, shape=()),
-                'velocity': spaces.Box(low=-1, high=1, shape=()) 
+            OPPONENT: spaces.Dict({
+                POSITION: spaces.Box(low=0, high=100, shape=()),
+                VELOCITY: spaces.Box(low=-1, high=1, shape=()) 
             }), 
-            "ball": spaces.Dict({
-                'position': spaces.Box(low=0, high=100, shape=()),
-                'velocity': spaces.Box(low=-1, high=1, shape=())
+            BALL: spaces.Dict({
+                POSITION: spaces.Box(low=0, high=100, shape=()),
+                VELOCITY: spaces.Box(low=-1, high=1, shape=())
             })
         })
 
         self.action_space = spaces.Dict({
-            "w": spaces.Discrete(2),
-            "s": spaces.Discrete(2),
-            "a": spaces.Discrete(2),
-            "d": spaces.Discrete(2)
+            KEY_A: spaces.Discrete(2),
+            KEY_S: spaces.Discrete(2),
+            KEY_W: spaces.Discrete(2),
+            KEY_D: spaces.Discrete(2)
         })
 
         self.seed()
@@ -94,3 +104,47 @@ class SlimeEnv(gym.Env):
 
     def reset(self):
         self.guess_count = 0
+
+    def observe_action(self, action):
+        # see above for observation details
+        # TODO
+        # do action with selenium
+        # press key(s) that action specifies
+
+        # set observation based on results of taking action
+        observation = {
+            PLAYER: {
+                POSITION: 0,
+                VELOCITY: 0
+            }, 
+            OPPONENT: {
+                POSITION: 0,
+                VELOCITY: 0 
+            }, 
+            BALL: {
+                POSITION: 0,
+                VELOCITY: 0
+            }
+        }
+        return observation
+    
+    def compute_reward(self, observation):
+        # see above for reward details
+        """
+        -2 reward if player kicks ball away from opponent goal
+        -1 reward if player moving away from ball (distance to ball increasing)
+        1 reward if player moving toward ball (distance to ball decreasing)
+        2 reward if player kicks ball toward opponent goal
+        """
+        ball_left_of_player = observation[BALL][POSITION] < observation[PLAYER][POSITION]
+        if ball_left_of_player:
+            if observation[PLAYER][VELOCITY] < 0:
+                return 1
+            else:
+                return -1
+        else:
+            if observation[PLAYER][VELOCITY] > 0:
+                return 1
+            else:
+                return -1
+
