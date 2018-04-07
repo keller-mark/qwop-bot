@@ -6,6 +6,9 @@ import numpy as np
 
 class SlimeEnv(gym.Env):
     """
+
+    Based on https://github.com/openai/gym/blob/master/gym/envs/toy_text/guessing_game.py
+
     The object of the game is to score more goals than your opponent
     within 200 time steps
 
@@ -38,8 +41,9 @@ class SlimeEnv(gym.Env):
     to them explicitly) and then follow binary tree style exploration towards to goal number
     """
     def __init__(self):
-        self.range = 1000  # Randomly selected number is within +/- this value
-        self.bounds = 10000
+
+        self.frame_max = 200
+        self.frame_count = 0
 
         self.observation_space = spaces.Dict({
             "player": spaces.Dict({
@@ -55,17 +59,13 @@ class SlimeEnv(gym.Env):
                 'velocity': spaces.Box(low=-1, high=1, shape=())
             })
         })
+
         self.action_space = spaces.Dict({
             "w": spaces.Discrete(2),
             "s": spaces.Discrete(2),
             "a": spaces.Discrete(2),
             "d": spaces.Discrete(2)
         })
-
-        self.number = 0
-        self.guess_count = 0
-        self.guess_max = 200
-        self.observation = 0
 
         self.seed()
         self.reset()
@@ -77,30 +77,20 @@ class SlimeEnv(gym.Env):
     def step(self, action):
         assert self.action_space.contains(action)
 
-        if action < self.number:
-            self.observation = 1
-
-        elif action == self.number:
-            self.observation = 2
-
-        elif action > self.number:
-            self.observation = 3
+        # Get an observation by pressing the keys specified in action
+        self.observation = self.observe_action(action)
 
         reward = 0
         done = False
 
-        if (self.number - self.range * 0.01) < action < (self.number + self.range * 0.01):
-            reward = 1
+        reward, done = self.compute_reward(observation)
+
+        self.frame_count += 1
+        if self.frame_count >= self.frame_max:
+            # override done if >= 200 frames have passed
             done = True
 
-        self.guess_count += 1
-        if self.guess_count >= self.guess_max:
-            done = True
-
-        return self.observation, reward, done, {"number": self.number, "guesses": self.guess_count}
+        return self.observation, reward, done #, {"number": self.number, "guesses": self.guess_count}
 
     def reset(self):
-        self.number = self.np_random.uniform(-self.range, self.range)
         self.guess_count = 0
-        self.observation = 0
-return self.observation
