@@ -1,0 +1,9 @@
+{
+	"ball": ".dPekIf",
+	"player-me": ".bsmdSP:nth-child(1)",
+	"player-bot": ".bsmdSP:nth-child(2)",
+	"score-me": ".cZZKJg",
+	"score-bot": ".fekTLN",
+	"team-me": ".jnacmC",
+	"team-bot": ".iubyCj"
+}

@@ -14,7 +14,7 @@
 	"use strict";
 	n(1), n(2), n(962)
 }, function (e, t, n) {
-	e.exports = n.p + "index.html"
+	e.exports = n.p + "assets/" + "index.html"
 }, function (e, t, n) {
 	"use strict";
 
@@ -17827,7 +17827,7 @@
 		return r !== !1 && u.push("top : " + r + ";"), o !== !1 && u.push("right : " + o + ";"), i !== !1 && u.push("bottom : " + i + ";"), a !== !1 && u.push("left : " + a + ";"), u.join("")
 	}, t.foo = "foo"
 }, function (e, t, n) {
-	e.exports = n.p + "6786eeb7eeba1b35ceb6367abde6302e.png"
+	e.exports = n.p + "assets/" + "6786eeb7eeba1b35ceb6367abde6302e.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -17885,9 +17885,9 @@
 		return c.default.createElement(y, null, c.default.createElement(m, null))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "c2f63b93c902c7e013a4c01c4c3620e6.png"
+	e.exports = n.p + "assets/" + "c2f63b93c902c7e013a4c01c4c3620e6.png"
 }, function (e, t, n) {
-	e.exports = n.p + "bb483ecfb70c634648d4361d8b706cb9.png"
+	e.exports = n.p + "assets/" + "bb483ecfb70c634648d4361d8b706cb9.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -17958,7 +17958,7 @@
 		})), f.default.createElement(C, null)))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "8f1063cc5f9a141806ae6953fe1f6e4a.png"
+	e.exports = n.p + "assets/" + "8f1063cc5f9a141806ae6953fe1f6e4a.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -18783,7 +18783,7 @@
 		create: n(441)
 	})
 }, function (e, t, n) {
-	e.exports = n.p + "e0293a05601803a01aa1b0301e168b64.png"
+	e.exports = n.p + "assets/" + "e0293a05601803a01aa1b0301e168b64.png"
 }, function (e, t) {
 	"use strict";
 	Object.defineProperty(t, "__esModule", {
@@ -18849,11 +18849,11 @@
 		}, c.default.createElement(_, null))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "6bd26fdb08ba780363f66b2d878d8cc7.png"
+	e.exports = n.p + "assets/" + "6bd26fdb08ba780363f66b2d878d8cc7.png"
 }, function (e, t, n) {
-	e.exports = n.p + "4d6a972bfad4dca04e93f82558ad22fb.png"
+	e.exports = n.p + "assets/" + "4d6a972bfad4dca04e93f82558ad22fb.png"
 }, function (e, t, n) {
-	e.exports = n.p + "417c6cc5c5ef96e3d070d97298f1eac4.png"
+	e.exports = n.p + "assets/" + "417c6cc5c5ef96e3d070d97298f1eac4.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -25309,7 +25309,7 @@
 		})
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "4a7098f5e341c2130e3e53f90ce55e1b.svg"
+	e.exports = n.p + "assets/" + "4a7098f5e341c2130e3e53f90ce55e1b.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -25997,9 +25997,9 @@
 		}, A
 	})
 }, function (e, t, n) {
-	e.exports = n.p + "f40adba9d3811009383907e71e24e963.svg"
+	e.exports = n.p + "assets/" + "f40adba9d3811009383907e71e24e963.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "50857d4d407892db5b5db218a76e400a.svg"
+	e.exports = n.p + "assets/" + "50857d4d407892db5b5db218a76e400a.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -27508,7 +27508,7 @@
 		}(v.PureComponent);
 	t.default = w
 }, function (e, t, n) {
-	e.exports = n.p + "02b74f0c06c448d4a326a09eb090e30d.svg"
+	e.exports = n.p + "assets/" + "02b74f0c06c448d4a326a09eb090e30d.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -27790,9 +27790,9 @@
 		}(M.default);
 	t.default = D
 }, function (e, t, n) {
-	e.exports = n.p + "e181abedf9fa2eb6904aa891b2c1a458.svg"
+	e.exports = n.p + "assets/" + "e181abedf9fa2eb6904aa891b2c1a458.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "24db78eadbcca7a8eaa9f04237fb227f.svg"
+	e.exports = n.p + "assets/" + "24db78eadbcca7a8eaa9f04237fb227f.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -28609,7 +28609,7 @@
 		}(v.PureComponent);
 	t.default = w
 }, function (e, t, n) {
-	e.exports = n.p + "ee0fcd99f05848d599494082b037fbd2.svg"
+	e.exports = n.p + "assets/" + "ee0fcd99f05848d599494082b037fbd2.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -28957,7 +28957,7 @@
 		})
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "05c5f67508ee572f567bab60bf512bb6.svg"
+	e.exports = n.p + "assets/" + "05c5f67508ee572f567bab60bf512bb6.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -30484,7 +30484,7 @@
 		})
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "5690f1fc62210dee4429e09e3630ea81.svg"
+	e.exports = n.p + "assets/" + "5690f1fc62210dee4429e09e3630ea81.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -33399,9 +33399,9 @@
 		}(A.default);
 	t.default = H
 }, function (e, t, n) {
-	e.exports = n.p + "6eb2b28682079108483fabc277eb4f3c.svg"
+	e.exports = n.p + "assets/" + "6eb2b28682079108483fabc277eb4f3c.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "4cd952962d60dfb9612ee51cd61d2244.svg"
+	e.exports = n.p + "assets/" + "4cd952962d60dfb9612ee51cd61d2244.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -33596,11 +33596,11 @@
 		};
 	t.default = (0, d.connect)(k, O)(E)
 }, function (e, t, n) {
-	e.exports = n.p + "a0d17e1f06c65c0e8c02de81ea7a23ff.svg"
+	e.exports = n.p + "assets/" + "a0d17e1f06c65c0e8c02de81ea7a23ff.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "e5d778af9f599df4bb005db11de6db97.svg"
+	e.exports = n.p + "assets/" + "e5d778af9f599df4bb005db11de6db97.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "e366d8a1ea8ad2068a9caf9d2c44538a.svg"
+	e.exports = n.p + "assets/" + "e366d8a1ea8ad2068a9caf9d2c44538a.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -35753,9 +35753,9 @@
 		}, n), i)
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "a3920ca2f858d5020996823f447c9fb3.svg"
+	e.exports = n.p + "assets/" + "a3920ca2f858d5020996823f447c9fb3.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "f25c852b0a9df30be43c29c0d972e7e3.svg"
+	e.exports = n.p + "assets/" + "f25c852b0a9df30be43c29c0d972e7e3.svg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -35840,7 +35840,7 @@
 		})))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "5f3151b9777c4f2d47bd0c747cc66d86.jpg"
+	e.exports = n.p + "assets/" + "5f3151b9777c4f2d47bd0c747cc66d86.jpg"
 }, function (e, t, n) {
 	"use strict";
 
@@ -35979,7 +35979,7 @@
 		}, c.default.createElement(y, null), c.default.createElement(m, null, "Well done! Slime on, you crazy diamonds!"))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "e8e1bb158e4346fe374a059a880a17c8.png"
+	e.exports = n.p + "assets/" + "e8e1bb158e4346fe374a059a880a17c8.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -36094,9 +36094,9 @@
 		}), l.default.createElement(b, null), l.default.createElement(x, null, "with Messenger installed"), l.default.createElement(_, null))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "3dfc294cebfa4e110da75a2a270564dc.png"
+	e.exports = n.p + "assets/" + "3dfc294cebfa4e110da75a2a270564dc.png"
 }, function (e, t, n) {
-	e.exports = n.p + "7a4add817f6e7fe207ffe52c428f3305.png"
+	e.exports = n.p + "assets/" + "7a4add817f6e7fe207ffe52c428f3305.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -36158,7 +36158,7 @@
 		}), s.default.createElement(v, null))
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "efb9974603a391d9511ee5955524fe6b.png"
+	e.exports = n.p + "assets/" + "efb9974603a391d9511ee5955524fe6b.png"
 }, function (e, t, n) {
 	"use strict";
 
@@ -36921,33 +36921,33 @@
 		})
 	}
 }, function (e, t, n) {
-	e.exports = n.p + "23d354717585d5a5b07fb187f360c629.svg"
+	e.exports = n.p + "assets/" + "23d354717585d5a5b07fb187f360c629.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "f2e5631418f94c7c9071336a1e625b31.svg"
+	e.exports = n.p + "assets/" + "f2e5631418f94c7c9071336a1e625b31.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "15a457c349a07c8c2e4dbc2e672f54a7.svg"
+	e.exports = n.p + "assets/" + "15a457c349a07c8c2e4dbc2e672f54a7.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "24e7e5d701521c211ab4a80c48ff4210.jpg"
+	e.exports = n.p + "assets/" + "24e7e5d701521c211ab4a80c48ff4210.jpg"
 }, function (e, t, n) {
-	e.exports = n.p + "4e73f59fad790edbdaf3ba30bc020ea5.jpg"
+	e.exports = n.p + "assets/" + "4e73f59fad790edbdaf3ba30bc020ea5.jpg"
 }, function (e, t, n) {
-	e.exports = n.p + "bd822f79c480d80bc0aff8d482c1a82b.svg"
+	e.exports = n.p + "assets/" + "bd822f79c480d80bc0aff8d482c1a82b.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "1a9329c97fe44490fd15eb43f795344f.svg"
+	e.exports = n.p + "assets/" + "1a9329c97fe44490fd15eb43f795344f.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "657850c0b3a4a53d552a00b9df5c1579.jpg"
+	e.exports = n.p + "assets/" + "657850c0b3a4a53d552a00b9df5c1579.jpg"
 }, function (e, t, n) {
-	e.exports = n.p + "33ac14f433484f353d32dee4dc38af16.jpg"
+	e.exports = n.p + "assets/" + "33ac14f433484f353d32dee4dc38af16.jpg"
 }, function (e, t, n) {
-	e.exports = n.p + "1c8c362f3201ad0bdb7a2e253002726c.svg"
+	e.exports = n.p + "assets/" + "1c8c362f3201ad0bdb7a2e253002726c.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "d95b48251041ddc5e72b4fe77dbf76a2.svg"
+	e.exports = n.p + "assets/" + "d95b48251041ddc5e72b4fe77dbf76a2.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "bc43b4cfb83ec19af3cc773c009a477b.png"
+	e.exports = n.p + "assets/" + "bc43b4cfb83ec19af3cc773c009a477b.png"
 }, function (e, t, n) {
-	e.exports = n.p + "8e6c358bdcb4b3761dfdcfe3ddb5c780.svg"
+	e.exports = n.p + "assets/" + "8e6c358bdcb4b3761dfdcfe3ddb5c780.svg"
 }, function (e, t, n) {
-	e.exports = n.p + "b2d5de18562dfa52643170f8326e8eff.svg"
+	e.exports = n.p + "assets/" + "b2d5de18562dfa52643170f8326e8eff.svg"
 }, function (e, t, n) {
 	var r = n(963);
 	"string" == typeof r && (r = [
