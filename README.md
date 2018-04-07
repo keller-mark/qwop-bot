@@ -5,4 +5,5 @@
 
 ```
 docker build -t "slime-bot" .
+docker run slime-bot
 ```
