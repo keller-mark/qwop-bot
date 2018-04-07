@@ -1,13 +1,8 @@
 # Slime Soccer Bot
 
 ### Setup
-- docker
+- geckodriver (add to PATH)
+- `pip install -r requirements.txt`
 
-```
-docker build -t "slime-bot" .
-docker run -v $(pwd)/bot:/bot -d --name slime_bot slime-bot
-docker exec -it slime_bot sh
-# to exit: exit
-docker stop slime_bot
-docker rm slime_bot
-```
+### Run
+`python sel.py`

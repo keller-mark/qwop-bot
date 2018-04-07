@@ -5,27 +5,26 @@ import numpy as np
 
 
 class SlimeEnv(gym.Env):
-    """Number guessing game
-    # The object of the game is to guess within 1% of the randomly chosen number
-    # within 200 time steps
-
+    """
     The object of the game is to score more goals than your opponent
     within 200 time steps
 
-    # After each step the agent is provided with one of four possible observations
-    # which indicate where the guess is in relation to the randomly chosen number
-    # 0 - No guess yet submitted (only after reset)
-    # 1 - Guess is lower than the target
-    # 2 - Guess is equal to the target
-    # 3 - Guess is higher than the target
+    The observation is a tuple of: (
+        the player's current position,
+        the player's current velocity,
+        the opponent's current position,
+        the opponent's current velocity,
+        the ball's current position,
+        the ball's current velocity
+    )
     
     The rewards are:
-    # 0 if the agent's guess is outside of 1% of the target
-    # 1 if the agent's guess is inside 1% of the target
-    0 if no goals scored or own goal scored
-    1 if goal(s) scored
+    -2 reward if player kicks ball away from opponent goal
+    -1 reward if player moving away from ball (distance to ball increasing)
+    1 reward if player moving toward ball (distance to ball decreasing)
+    2 reward if player kicks ball toward opponent goal
     
-    The episode terminates after the agent has scored more goals than opponent or
+    The episode terminates after the agent has scored a goal or
     200 steps have been taken
     
     The agent will need to use a memory of previously submitted actions and observations
@@ -42,8 +41,26 @@ class SlimeEnv(gym.Env):
         self.range = 1000  # Randomly selected number is within +/- this value
         self.bounds = 10000
 
-        self.action_space = spaces.Box(low=np.array([-self.bounds]), high=np.array([self.bounds]))
-        self.observation_space = spaces.Discrete(4)
+        self.observation_space = spaces.Dict({
+            "player": spaces.Dict({
+                'position': spaces.Box(low=0, high=100, shape=()),
+                'velocity': spaces.Box(low=-1, high=1, shape=())
+            }), 
+            "opponent": spaces.Dict({
+                'position': spaces.Box(low=0, high=100, shape=()),
+                'velocity': spaces.Box(low=-1, high=1, shape=()) 
+            }), 
+            "ball": spaces.Dict({
+                'position': spaces.Box(low=0, high=100, shape=()),
+                'velocity': spaces.Box(low=-1, high=1, shape=())
+            })
+        })
+        self.action_space = spaces.Dict({
+            "w": spaces.Discrete(2),
+            "s": spaces.Discrete(2),
+            "a": spaces.Discrete(2),
+            "d": spaces.Discrete(2)
+        })
 
         self.number = 0
         self.guess_count = 0
