@@ -136,15 +136,21 @@ class SlimeEnv(gym.Env):
         1 reward if player moving toward ball (distance to ball decreasing)
         2 reward if player kicks ball toward opponent goal
         """
+        # TODO: set whether ball in goal
+        ball_in_opponent_goal = False
+        reward = 0
         ball_left_of_player = observation[BALL][POSITION] < observation[PLAYER][POSITION]
         if ball_left_of_player:
             if observation[PLAYER][VELOCITY] < 0:
-                return 1
+                reward = 1
             else:
-                return -1
+                reward = -1
         else:
             if observation[PLAYER][VELOCITY] > 0:
-                return 1
+                reward = 1
             else:
-                return -1
+                reward = -1
+        
+        return reward, ball_in_opponent_goal
+        
 
