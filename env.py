@@ -3,8 +3,9 @@ from gym import spaces
 from gym.utils import seeding
 import numpy as np
 
-POSITION = 'position'
-VELOCITY = 'velocity'
+POSITION_X = 'position_x'
+POSITION_Y = 'position_y'
+VELOCITY_X = 'velocity_x'
 PLAYER = 'player'
 OPPONENT = 'opponent'
 BALL = 'ball'
@@ -61,16 +62,19 @@ class SlimeEnv(gym.Env):
 
         self.observation_space = spaces.Dict({
             PLAYER: spaces.Dict({
-                POSITION: spaces.Box(low=0, high=100, shape=()),
-                VELOCITY: spaces.Box(low=-1, high=1, shape=())
+                POSITION_X: spaces.Box(low=35, high=665, shape=()),
+                POSITION_Y: spaces.Box(low=0, high=0, shape=()),
+                VELOCITY_X: spaces.Box(low=-30, high=30, shape=())
             }), 
             OPPONENT: spaces.Dict({
-                POSITION: spaces.Box(low=0, high=100, shape=()),
-                VELOCITY: spaces.Box(low=-1, high=1, shape=()) 
+                POSITION_X: spaces.Box(low=35, high=665, shape=()),
+                POSITION_Y: spaces.Box(low=0, high=0, shape=()),
+                VELOCITY_X: spaces.Box(low=-30, high=30, shape=()) 
             }), 
             BALL: spaces.Dict({
-                POSITION: spaces.Box(low=0, high=100, shape=()),
-                VELOCITY: spaces.Box(low=-1, high=1, shape=())
+                POSITION_X: spaces.Box(low=0, high=689.5, shape=()),
+                POSITION_Y: spaces.Box(low=0, high=0, shape=()),
+                VELOCITY_X: spaces.Box(low=-30, high=30, shape=())
             })
         })
 
@@ -119,16 +123,19 @@ class SlimeEnv(gym.Env):
         # set observation based on results of taking action
         observation = {
             PLAYER: {
-                POSITION: 0,
-                VELOCITY: 0
+                POSITION_X: 0,
+                POSITION_Y: 0,
+                VELOCITY_X: 0
             }, 
             OPPONENT: {
-                POSITION: 0,
-                VELOCITY: 0 
+                POSITION_X: 0,
+                POSITION_Y: 0,
+                VELOCITY_X: 0 
             }, 
             BALL: {
-                POSITION: 0,
-                VELOCITY: 0
+                POSITION_X: 0,
+                POSITION_Y: 0,
+                VELOCITY_X: 0
             }
         }
         return observation
@@ -146,14 +153,14 @@ class SlimeEnv(gym.Env):
         reward = 0
         ball_in_opponent_goal = False
         # calculate reward based on state
-        ball_left_of_player = observation[BALL][POSITION] < observation[PLAYER][POSITION]
+        ball_left_of_player = observation[BALL][POSITION_X] < observation[PLAYER][POSITION_X]
         if ball_left_of_player:
-            if observation[PLAYER][VELOCITY] < 0:
+            if observation[PLAYER][VELOCITY_X] < 0:
                 reward = 1
             else:
                 reward = -1
         else:
-            if observation[PLAYER][VELOCITY] > 0:
+            if observation[PLAYER][VELOCITY_X] > 0:
                 reward = 1
             else:
                 reward = -1
