@@ -1,16 +1,29 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+import pyautogui
 import os
-#from pyvirtualdisplay import Display
 import time
-#display = Display(visible=0, size = (800,800))
-#display.start()
 
+SP = "clblHP"
+GO = "wbc-btn-go"
+ch_team = "cTXYfN"
 chrome_options = Options()
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(chrome_options=chrome_options)
-#driver.get("file:///bot/slime/index.html")
 path = os.path.abspath(os.path.join("slime", "index.html"))
 driver.get("file://" + path)
-driver.find_element_by_class_name("clblHP").click()
+driver.find_element_by_class_name(SP).click()
+driver.find_element_by_class_name(GO).click()
+for i in range(0,13):
+    driver.find_element_by_class_name(ch_team).click()
+driver.find_element_by_class_name(GO).click()
+driver.find_element_by_class_name(GO).click()
+time.sleep(0.01)
+pyautogui.keyDown('d')
+time.sleep(1)
+pyautogui.keyUp('d')
+time.sleep(1)
+
+driver.quit()
