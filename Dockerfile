@@ -18,6 +18,6 @@ RUN apk add curl unzip libexif udev chromium chromium-chromedriver xvfb
 
 COPY . .
 
-CMD [ "tail", "-f", "/dev/null" ]
+CMD cd slime && python -m http.server
 
 

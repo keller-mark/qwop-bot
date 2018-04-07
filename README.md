@@ -8,4 +8,6 @@ docker build -t "slime-bot" .
 docker run -d --name slime_bot slime-bot
 docker exec -it slime_bot sh
 # to exit: exit
+docker stop slime_bot
+docker rm slime_bot
 ```
