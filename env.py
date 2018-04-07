@@ -36,6 +36,10 @@ class SlimeEnv(gym.Env):
     -1 reward if player moving away from ball (distance to ball increasing)
     1 reward if player moving toward ball (distance to ball decreasing)
     2 reward if player kicks ball toward opponent goal
+
+    Future reward changes:
+        - amount of velocity
+        - 
     
     The episode terminates after the agent has scored a goal or
     200 steps have been taken
@@ -111,6 +115,7 @@ class SlimeEnv(gym.Env):
         # do action with selenium
         # press key(s) that action specifies
 
+        # TODO
         # set observation based on results of taking action
         observation = {
             PLAYER: {
@@ -136,9 +141,11 @@ class SlimeEnv(gym.Env):
         1 reward if player moving toward ball (distance to ball decreasing)
         2 reward if player kicks ball toward opponent goal
         """
-        # TODO: set whether ball in goal
-        ball_in_opponent_goal = False
+        # TODO
+        # set reward, done
         reward = 0
+        ball_in_opponent_goal = False
+        # calculate reward based on state
         ball_left_of_player = observation[BALL][POSITION] < observation[PLAYER][POSITION]
         if ball_left_of_player:
             if observation[PLAYER][VELOCITY] < 0:
