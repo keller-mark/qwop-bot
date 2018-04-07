@@ -1,5 +1,2 @@
 gym
 selenium
-python3-xlib
-pyautogui
-
