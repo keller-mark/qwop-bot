@@ -78,6 +78,7 @@ class SlimeEnv(gym.Env):
             })
         })
 
+        # TODO: add duration for each key
         self.action_space = spaces.Dict({
             KEY_A: spaces.Discrete(2),
             KEY_S: spaces.Discrete(2),
