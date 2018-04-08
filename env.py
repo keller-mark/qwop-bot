@@ -72,8 +72,8 @@ class SlimeEnv(gym.Env):
                 VELOCITY_X: spaces.Box(low=-30, high=30, shape=()) 
             }), 
             BALL: spaces.Dict({
-                POSITION_X: spaces.Box(low=0, high=689.5, shape=()),
-                POSITION_Y: spaces.Box(low=100, high=600, shape=()),
+                POSITION_X: spaces.Box(low=10, high=689.5, shape=()),
+                POSITION_Y: spaces.Box(low=280, high=100, shape=()),
                 VELOCITY_X: spaces.Box(low=-30, high=30, shape=())
             })
         })

@@ -31,6 +31,8 @@ CH_TEAM = "cTXYfN"
 elements = json.load(open('slime_elements.json'))
 player_selector = elements['player']
 ball_selector = elements['ball']
+end_path = '//*[@id="content"]/div/div[2]/div[2]/div[2]/div[1]/div/div/div/div[5]/div/div[3]/div'
+
 # Open Webdriver
 options = Options()
 #options.add_argument("--headless")
@@ -55,13 +57,14 @@ for i in range(0,3):
     game_counter = 0
     ball_X = 0
     messi_X = 0
+    comp_X = 0
     # GAME STARTS
     while True:
-        try:
-            end_game = driver.find_element_by_class_name(elements['end-game'])
+        end_game = driver.find_element_by_xpath(end_path)
+        if int(end_game.text[3:5]) == 0 and int(end_game.text[-2:]) < 10:
             print("Game %d has ended" %i)
             break
-        except :
+        else:
             game_counter+=1
             player = driver.find_elements_by_class_name(player_selector)
             ball = driver.find_element_by_class_name(ball_selector)
@@ -69,6 +72,7 @@ for i in range(0,3):
             comp_pos = player[1].get_attribute("style")
             prev_ball_X = ball_X
             prev_messi_X = messi_X
+            prev_comp_X = comp_X
             ball_pos = ball.get_attribute("style")
             ball_X = get_pos(ball_pos)[0]
             ball_Y = get_pos(ball_pos)[1]
@@ -76,16 +80,10 @@ for i in range(0,3):
             messi_Y = get_pos(messi_pos)[1]
             comp_X = get_pos(comp_pos)[0]
             comp_Y = get_pos(comp_pos)[1]
-            '''
-            print("Game %d Running" %i)
-            print("Messi: "+ str(get_pos(messi_pos)))
-            print("Computer: " + str(get_pos(comp_pos)))
-            print("Ball: " + str(get_pos(ball_pos)))
-            '''
             ball_vel = constrain((ball_X - prev_ball_X), -30, 30)
             messi_vel = constrain((messi_X - prev_messi_X), -10, 10)
-            print(ball_vel)
-            
+            comp_vel = constrain((comp_X - prev_comp_X), -10, 10)
+    print(game_counter) 
     driver.refresh()
     time.sleep(1)
 driver.close()
