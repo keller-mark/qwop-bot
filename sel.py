@@ -11,6 +11,7 @@ from selenium.webdriver.firefox.options import Options
 import os
 import time
 import json
+import random
 import re
 
 def main():
@@ -41,8 +42,13 @@ def get_pos(string):
     string = string.split(';')
     return (float(pos_filter.sub('', string[0])), float(pos_filter.sub('', string[1])))
 def get_hang_percent(string):
+    print(string)
     filt = re.compile(r'[^\d.]+')
-    return float(filt.sub('',string))
+    try:
+        return float(filt.sub('',string))
+    except ValueError:
+        print('Float not converted to string')
+        return random.uniform(1.5,2.5)
 # Key Constants
 RIGHT = 'd'
 UP = 'w'
@@ -98,8 +104,13 @@ for i in range(0,1001):
 
     # GAME STARTS
     while True:
-        end_game = driver.find_element_by_xpath(end_path)
-        if int(end_game.text[3:5]) == 0 and int(end_game.text[-2:]) < 10:
+        try:
+            end_game = driver.find_element_by_xpath(end_path)
+            if int(end_game.text[3:5]) == 0 and int(end_game.text[-2:]) < 10:
+                print("Game %d has ended" %i)
+                break
+
+        except:
             print("Game %d has ended" %i)
             break
         else:
@@ -114,8 +125,8 @@ for i in range(0,1001):
             is_s = True
             is_d = True
             while True:
-               # if action[KEY_A]:
-               #     a_down.perform()
+                if action[KEY_A]:
+                    a_down.perform()
                 if action[KEY_S]:
                     s_down.perform()
                 if action[KEY_W]:
@@ -126,9 +137,9 @@ for i in range(0,1001):
                 if time.time() > w_end:
                     w_up.perform()
                     is_w = False
-               # if time.time() > a_end:
-               #     a_up.perform()
-               #     is_a = False
+                if time.time() > a_end:
+                    a_up.perform()
+                    is_a = False
                 if time.time() > s_end:
                     a_up.perform()
                     is_s = False
@@ -139,14 +150,18 @@ for i in range(0,1001):
                 if not is_w and not is_s and not is_d:
                     break
             
-            player = driver.find_elements_by_class_name(player_selector)
-            ball = driver.find_element_by_class_name(ball_selector)
-            messi_pos = player[0].get_attribute("style")
-            comp_pos = player[1].get_attribute("style")
+            try:
+                player = driver.find_elements_by_class_name(player_selector)
+                ball = driver.find_element_by_class_name(ball_selector)
+                messi_pos = player[0].get_attribute("style")
+                hanging = driver.find_element_by_class_name('iqiixv').get_attribute("style")
+                ball_pos = ball.get_attribute("style")
+                comp_pos = player[1].get_attribute("style")
+            except:
+                break 
             prev_ball_X = ball_X
             prev_messi_X = messi_X
             prev_comp_X = comp_X
-            ball_pos = ball.get_attribute("style")
             ball_X = get_pos(ball_pos)[0]
             ball_Y = get_pos(ball_pos)[1]
             messi_X = get_pos(messi_pos)[0]
@@ -156,7 +171,6 @@ for i in range(0,1001):
             ball_vel = constrain((ball_X - prev_ball_X), -30, 30)
             messi_vel = constrain((messi_X - prev_messi_X), -10, 10)
             comp_vel = constrain((comp_X - prev_comp_X), -10, 10)
-            hanging = driver.find_element_by_class_name('iqiixv').get_attribute("style")
             is_hanging = get_hang_percent(hanging) < 2.0
             observation = {
                 PLAYER: {
