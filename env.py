@@ -118,7 +118,29 @@ class SlimeEnv(gym.Env):
 
     def reset(self):
         self.guess_count = 0
-    
+    def get_goal_state(observation):
+        messi_goal = (30, 215)
+        comp_goal = (670, 215)
+        if (observation[BALL][POSITION_X] > comp_goal[0] and 
+                observation[BALL][POSITION_Y] > comp_goal[1]):
+            return 1    #AI scores
+        elif (observation[BALL][POSITION_X] < messi_goal[0] and 
+                observation[BALL][POSITION_Y] > messi_goal[1]):
+            return -1   #Comp scores
+        else
+            return 0    #No goal
+
+    def is_kicking(observation):
+        messi_x = observation[PLAYER][POSITION_X]
+        messi_y = observation[PLAYER][POSITION_Y]
+        ball_x = observation[BALL][POSITION_X]
+        ball_y = observation[BALL][POSITION_Y]
+        colliding = False
+        if (ball_x < messi_x + 40 and ball_x > messi_x - 40 and ball_y > messi_y - 5 and 
+                ball_y < messi_y + 40):
+            colliding = true
+        return colliding and (observation[PLAYER][VELOCITY_X] > 0)
+
     def compute_reward(self, observation):
         # see above for reward details
         """
@@ -130,20 +152,25 @@ class SlimeEnv(gym.Env):
         # TODO
         # set reward, done
         reward = 0
-        ball_in_opponent_goal = False
+        goal_state = get_goal_state(observation)
+        
         # calculate reward based on state
         ball_left_of_player = observation[BALL][POSITION_X] < observation[PLAYER][POSITION_X]
         if ball_left_of_player:
             if observation[PLAYER][VELOCITY_X] < 0:
-                reward = 1
+                reward += 1
             else:
-                reward = -1
+                reward += -1
         else:
             if observation[PLAYER][VELOCITY_X] > 0:
-                reward = 1
+                reward += 1
             else:
-                reward = -1
+                reward += -1
+        if is_kicking(observation):
+            reward += 2
+
+        reward += 5*goal_state(observation)
         
-        return reward, ball_in_opponent_goal
+        return reward, goal_state
         
 
