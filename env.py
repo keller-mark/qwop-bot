@@ -114,7 +114,7 @@ class SlimeEnv(gym.Env):
             # override done if >= 200 frames have passed
             done = True
 
-        return self.observation, reward, done #, {"number": self.number, "guesses": self.guess_count}
+        return self.observation, reward, done, { "info": None }
 
     def reset(self):
         self.guess_count = 0
