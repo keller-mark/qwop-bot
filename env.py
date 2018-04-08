@@ -9,6 +9,7 @@ VELOCITY_X = 'velocity_x'
 PLAYER = 'player'
 OPPONENT = 'opponent'
 BALL = 'ball'
+HANGING = 'hanging'
 
 KEY_W = 'w'
 DURATION_W = 'duration_w'
@@ -68,7 +69,8 @@ class SlimeEnv(gym.Env):
             PLAYER: spaces.Dict({
                 POSITION_X: spaces.Box(low=35, high=665, shape=()),
                 POSITION_Y: spaces.Box(low=245, high=150, shape=()),
-                VELOCITY_X: spaces.Box(low=-30, high=30, shape=())
+                VELOCITY_X: spaces.Box(low=-30, high=30, shape=()),
+                HANGING: spaces.Discrete(2)
             }), 
             OPPONENT: spaces.Dict({
                 POSITION_X: spaces.Box(low=35, high=665, shape=()),
@@ -88,10 +90,10 @@ class SlimeEnv(gym.Env):
             KEY_S: spaces.Discrete(2),
             KEY_W: spaces.Discrete(2),
             KEY_D: spaces.Discrete(2),
-            DURATION_A: spaces.Discrete(500),
-            DURATION_S: spaces.Discrete(500),
-            DURATION_D: spaces.Discrete(500),
-            DURATION_W: spaces.Discrete(500)
+            DURATION_A: spaces.Discrete(100),
+            DURATION_S: spaces.Discrete(100),
+            DURATION_D: spaces.Discrete(100),
+            DURATION_W: spaces.Discrete(100)
         })
 
         self.seed()
@@ -114,11 +116,11 @@ class SlimeEnv(gym.Env):
             # override done if >= 200 frames have passed
             done = True
 
-        return self.observation, reward, done, { "info": None }
+        return observation, reward, done, { "info": None }
 
     def reset(self):
         self.guess_count = 0
-    def get_goal_state(observation):
+    def get_goal_state(self, observation):
         messi_goal = (30, 215)
         comp_goal = (670, 215)
         if (observation[BALL][POSITION_X] > comp_goal[0] and 
@@ -127,10 +129,10 @@ class SlimeEnv(gym.Env):
         elif (observation[BALL][POSITION_X] < messi_goal[0] and 
                 observation[BALL][POSITION_Y] > messi_goal[1]):
             return -1   #Comp scores
-        else
+        else:
             return 0    #No goal
 
-    def is_kicking(observation):
+    def is_kicking(self, observation):
         messi_x = observation[PLAYER][POSITION_X]
         messi_y = observation[PLAYER][POSITION_Y]
         ball_x = observation[BALL][POSITION_X]
@@ -138,7 +140,7 @@ class SlimeEnv(gym.Env):
         colliding = False
         if (ball_x < messi_x + 40 and ball_x > messi_x - 40 and ball_y > messi_y - 5 and 
                 ball_y < messi_y + 40):
-            colliding = true
+            colliding = True
         return colliding and (observation[PLAYER][VELOCITY_X] > 0)
 
     def compute_reward(self, observation):
@@ -152,10 +154,11 @@ class SlimeEnv(gym.Env):
         # TODO
         # set reward, done
         reward = 0
-        goal_state = get_goal_state(observation)
+        goal_state = self.get_goal_state(observation)
         
         # calculate reward based on state
         ball_left_of_player = observation[BALL][POSITION_X] < observation[PLAYER][POSITION_X]
+        '''
         if ball_left_of_player:
             if observation[PLAYER][VELOCITY_X] < 0:
                 reward += 1
@@ -163,14 +166,18 @@ class SlimeEnv(gym.Env):
                 reward += -1
         else:
             if observation[PLAYER][VELOCITY_X] > 0:
-                reward += 1
+                reward += 10
             else:
                 reward += -1
-        if is_kicking(observation):
-            reward += 2
+                '''
+        if self.is_kicking(observation):
+            reward += 50
+        if observation[PLAYER][HANGING]:
+            print("HANGING---------------")
+            reward += -20
 
-        reward += 5*goal_state(observation)
-        
+        reward += 100*goal_state
+        print("REWARD= " + str(reward))
         return reward, goal_state
         
 
