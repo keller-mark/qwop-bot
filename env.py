@@ -158,25 +158,24 @@ class SlimeEnv(gym.Env):
         
         # calculate reward based on state
         ball_left_of_player = observation[BALL][POSITION_X] < observation[PLAYER][POSITION_X]
-        '''
+
         if ball_left_of_player:
             if observation[PLAYER][VELOCITY_X] < 0:
-                reward += 1
+                reward += 3
             else:
-                reward += -1
+                reward += -2
         else:
             if observation[PLAYER][VELOCITY_X] > 0:
-                reward += 10
+                reward += 3
             else:
-                reward += -1
-                '''
+                reward += -2
         if self.is_kicking(observation):
-            reward += 50
+            reward += 5
         if observation[PLAYER][HANGING]:
             print("HANGING---------------")
-            reward += -20
+            reward += -2
 
-        reward += 100*goal_state
+        reward += 10*goal_state
         print("REWARD= " + str(reward))
         return reward, goal_state
         
