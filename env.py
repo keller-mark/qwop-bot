@@ -11,9 +11,13 @@ OPPONENT = 'opponent'
 BALL = 'ball'
 
 KEY_W = 'w'
+DURATION_W = 'duration_w'
 KEY_A = 'a'
+DURATION_A = 'duration_a'
 KEY_S = 's'
+DURATION_S = 'duration_s'
 KEY_D = 'd'
+DURATION_D = 'duration_d'
 
 
 class SlimeEnv(gym.Env):
@@ -83,7 +87,11 @@ class SlimeEnv(gym.Env):
             KEY_A: spaces.Discrete(2),
             KEY_S: spaces.Discrete(2),
             KEY_W: spaces.Discrete(2),
-            KEY_D: spaces.Discrete(2)
+            KEY_D: spaces.Discrete(2),
+            DURATION_A: spaces.Discrete(500),
+            DURATION_S: spaces.Discrete(500),
+            DURATION_D: spaces.Discrete(500),
+            DURATION_W: spaces.Discrete(500)
         })
 
         self.seed()
@@ -93,11 +101,8 @@ class SlimeEnv(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def step(self, action):
+    def step(self, action, observation):
         assert self.action_space.contains(action)
-
-        # Get an observation by pressing the keys specified in action
-        self.observation = self.observe_action(action)
 
         reward = 0
         done = False
@@ -109,37 +114,10 @@ class SlimeEnv(gym.Env):
             # override done if >= 200 frames have passed
             done = True
 
-        return self.observation, reward, done #, {"number": self.number, "guesses": self.guess_count}
+        return self.observation, reward, done, { "info": None }
 
     def reset(self):
         self.guess_count = 0
-
-    def observe_action(self, action):
-        # see above for observation details
-        # TODO
-        # do action with selenium
-        # press key(s) that action specifies
-
-        # TODO
-        # set observation based on results of taking action
-        observation = {
-            PLAYER: {
-                POSITION_X: 0,
-                POSITION_Y: 0,
-                VELOCITY_X: 0
-            }, 
-            OPPONENT: {
-                POSITION_X: 0,
-                POSITION_Y: 0,
-                VELOCITY_X: 0 
-            }, 
-            BALL: {
-                POSITION_X: 0,
-                POSITION_Y: 0,
-                VELOCITY_X: 0
-            }
-        }
-        return observation
     
     def compute_reward(self, observation):
         # see above for reward details
