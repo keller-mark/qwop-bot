@@ -11,9 +11,13 @@ OPPONENT = 'opponent'
 BALL = 'ball'
 
 KEY_W = 'w'
+DURATION_W = 'duration_w'
 KEY_A = 'a'
+DURATION_A = 'duration_a'
 KEY_S = 's'
+DURATION_S = 'duration_s'
 KEY_D = 'd'
+DURATION_D = 'duration_d'
 
 
 class SlimeEnv(gym.Env):
@@ -83,7 +87,11 @@ class SlimeEnv(gym.Env):
             KEY_A: spaces.Discrete(2),
             KEY_S: spaces.Discrete(2),
             KEY_W: spaces.Discrete(2),
-            KEY_D: spaces.Discrete(2)
+            KEY_D: spaces.Discrete(2),
+            DURATION_A: spaces.Discrete(500),
+            DURATION_S: spaces.Discrete(500),
+            DURATION_D: spaces.Discrete(500),
+            DURATION_W: spaces.Discrete(500)
         })
 
         self.seed()
