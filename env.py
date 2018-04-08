@@ -101,11 +101,8 @@ class SlimeEnv(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def step(self, action):
+    def step(self, action, observation):
         assert self.action_space.contains(action)
-
-        # Get an observation by pressing the keys specified in action
-        self.observation = self.observe_action(action)
 
         reward = 0
         done = False
@@ -121,33 +118,6 @@ class SlimeEnv(gym.Env):
 
     def reset(self):
         self.guess_count = 0
-
-    def observe_action(self, action):
-        # see above for observation details
-        # TODO
-        # do action with selenium
-        # press key(s) that action specifies
-
-        # TODO
-        # set observation based on results of taking action
-        observation = {
-            PLAYER: {
-                POSITION_X: 0,
-                POSITION_Y: 0,
-                VELOCITY_X: 0
-            }, 
-            OPPONENT: {
-                POSITION_X: 0,
-                POSITION_Y: 0,
-                VELOCITY_X: 0 
-            }, 
-            BALL: {
-                POSITION_X: 0,
-                POSITION_Y: 0,
-                VELOCITY_X: 0
-            }
-        }
-        return observation
     
     def compute_reward(self, observation):
         # see above for reward details
