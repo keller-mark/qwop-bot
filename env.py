@@ -84,7 +84,6 @@ class SlimeEnv(gym.Env):
             })
         })
 
-        # TODO: add duration for each key
         self.action_space = spaces.Dict({
             KEY_A: spaces.Discrete(2),
             KEY_S: spaces.Discrete(2),
@@ -120,6 +119,7 @@ class SlimeEnv(gym.Env):
 
     def reset(self):
         self.guess_count = 0
+        
     def get_goal_state(self, observation):
         messi_goal = (30, 215)
         comp_goal = (670, 215)
@@ -179,5 +179,8 @@ class SlimeEnv(gym.Env):
         reward += 100*goal_state
         print("REWARD= " + str(reward))
         return reward, goal_state
+
+    def render(self):
+        pass
         
 

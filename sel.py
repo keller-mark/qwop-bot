@@ -1,4 +1,7 @@
-# Imports
+from env import *
+from baselines import deepq
+import gym
+
 import selenium
 from pickle import dump,load
 from selenium import webdriver
@@ -9,13 +12,25 @@ import os
 import time
 import json
 import re
-from env import *
 
-if os.path.isfile('env.obj') and open('env.obj').read() == '':
+def main():
     env = SlimeEnv()
-    env.reset() 
-else:
-    env = load(open('env.obj', 'rb'))
+    model = deepq.models.mlp([64])
+    act = deepq.learn(
+        env,
+        q_func=model,
+        lr=1e-3,
+        max_timesteps=100000,
+        buffer_size=50000,
+        exploration_fraction=0.1,
+        exploration_final_eps=0.1,
+        print_freq=10
+    )
+    act.save("cartpole_model.pkl")
+
+if __name__ == '__main__':
+    main()
+
 
 
 # Constrain
